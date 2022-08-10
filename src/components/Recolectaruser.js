@@ -5,35 +5,59 @@ import { Card } from "primereact/card";
 import Navbar from "../components/Navbar";
 import { InputNumber } from "primereact/inputnumber";
 import toast, { Toaster } from "react-hot-toast";
+import Loader from "../components/Loader";
 
 const Recolectaruser = () => {
   const [cuentaReferencia, setCuentaReferencia] = useState("");
   const [cantidadCuenta, setCantidadCuenta] = useState(null);
   const [cuentasFollowers, setCuentasFollowers] = useState([]);
+  const [open, setOpen] = useState(false);
 
-  const getFollowersDeCuentaDeReferencia = () => {
+  const getFollowersDeCuentaDeReferencia = async () => {
     try {
-      const response = fetch(
+      setOpen(true);
+      const response = await fetch(
         `http://localhost:5000/getCuentaReferencia?cuentaReferencia=${cuentaReferencia}&cantidadCuenta=${
           cantidadCuenta ?? ""
         }`
       );
       if (response.status === 200) {
-        setCuentasFollowers([]);
-        setCuentasFollowers(response.json());
-        toast.success(
-          "Se recuperaron los followers de la cuenta de referencia"
-        );
-        return response.json();
+        const data = await response.json();
+        if (data.cuentas.length > 0) {
+          setOpen(false);
+          setCuentasFollowers([]);
+          setCuentasFollowers(data);
+          toast.success(
+            "Se recuperaron los followers de la cuenta de referencia"
+          );
+        } else {
+          setOpen(false);
+          toast.error(
+            "No se encontraron followers de la cuenta de referencia o faltaron datos por ingresar"
+          );
+        }
       }
     } catch (error) {
+      setOpen(false);
       toast.error(
         "Error al recuperar los followers de la cuenta de referencia"
       );
     }
   };
 
-  const handleExportButton = (e) => {};
+  const handleExportButton = (e) => {
+    e.preventDefault();
+    const element = document.createElement("a");
+    const file = new Blob([JSON.stringify(cuentasFollowers)], {
+      type: "text/plain",
+    });
+    element.href = URL.createObjectURL(file);
+    element.download = `followers${cuentaReferencia}.json`;
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
+    document.body.removeChild(element);
+  };
+
   return (
     <div>
       <Navbar />
@@ -58,10 +82,7 @@ const Recolectaruser = () => {
             type="search"
             label="N° de cuentas"
             style={{ marginTop: "10px" }}
-            onChange={(e) => {
-              console.log(e.value);
-              setCantidadCuenta(e.value);
-            }}
+            onChange={(e) => setCantidadCuenta(e.value)}
             mode="decimal"
           />
           <Button
@@ -79,6 +100,7 @@ const Recolectaruser = () => {
         </Card>
       </div>
       <Toaster />
+      <Loader open={open} />
     </div>
   );
 };

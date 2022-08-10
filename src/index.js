@@ -8,13 +8,11 @@ import Analizardataset from "./components/Analizardataset";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <div>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/recolectaruser" element={<Recolectaruser />} />
-        <Route path="/analizardataset" element={<Analizardataset />} />
-      </Routes>
+        <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/recolectaruser" element={<Recolectaruser />} />
+            <Route path="/analizardataset" element={<Analizardataset />} />
+        </Routes>
     </BrowserRouter>
-  </div>
 );

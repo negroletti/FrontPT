@@ -11,6 +11,7 @@ const Recolectaruser = () => {
   const [cuentaReferencia, setCuentaReferencia] = useState("");
   const [cantidadCuenta, setCantidadCuenta] = useState(null);
   const [cuentasFollowers, setCuentasFollowers] = useState([]);
+  const [region, setRegion] = useState("");
   const [open, setOpen] = useState(false);
 
   const getFollowersDeCuentaDeReferencia = async () => {
@@ -52,7 +53,7 @@ const Recolectaruser = () => {
       type: "text/plain",
     });
     element.href = URL.createObjectURL(file);
-    element.download = `followers${cuentaReferencia}.json`;
+    element.download = `followers${cuentaReferencia}${region}.json`;
     document.body.appendChild(element); // Required for this to work in FireFox
     element.click();
     document.body.removeChild(element);
@@ -69,10 +70,18 @@ const Recolectaruser = () => {
             Recolectar seguidores de cuenta de referencia
           </h1>
           <InputText
+            id="region"
+            value={region}
+            placeholder="Región de cuenta"
+            type="search"
+            onChange={(e) => setRegion(e.target.value)}
+          />
+          <InputText
             id="cuentaReferencia"
             value={cuentaReferencia}
             placeholder="Cuenta de referencia"
             type="search"
+            style={{ marginTop: "10px" }}
             onChange={(e) => setCuentaReferencia(e.target.value)}
           />
           <InputNumber

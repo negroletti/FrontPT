@@ -18,6 +18,20 @@ const Navbar = () => {
             },
           },
           {
+            label: "Filtrar usuarios",
+            icon: "pi pi-fw pi-filter",
+            command: () => {
+              window.location.href = "/filtrarusuarios";
+            },
+          },
+          {
+            label: "Recolectar Tweets",
+            icon: "pi pi-fw pi-twitter",
+            command: () => {
+              window.location.href = "/recolectartweets";
+            },
+          },
+          {
             label: "Analizar set de datos",
             icon: "pi pi-fw pi-chart-bar",
             command: () => {

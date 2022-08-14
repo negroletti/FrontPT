@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useState } from "react";
+import { Button } from "primereact/button";
 import Navbar from "../components/Navbar";
 import { FileUpload } from "primereact/fileupload";
 import { Card } from "primereact/card";
 import toast from "react-hot-toast";
+import Tabla from "./Tabla";
 
 const Analizardataset = () => {
+  const [dataset, setDataset] = useState("");
   const chooseOptions = {
     label: "Elegir",
     icon: "pi pi-fw pi-plus",
     style: { width: "50%", marginBottom: "5%" },
   };
   const uploadOptions = {
-    label: "Subir",
+    label: "Cargar y analizar set de datos",
     icon: "pi pi-upload",
     className: "p-button-success",
     style: { width: "50%", marginBottom: "5%" },
@@ -33,12 +35,7 @@ const Analizardataset = () => {
     const formData = new FormData();
     const file = event.files[0];
 
-    formData.append("file", file); //?? primer argumento es nombre de la key y el segundo es el archivo
-    // formData.append("otherValue", 1); //?? Asi se agregarian mas argumentos a la consulta
-
-    // for (var pair of formData.entries()) { //?? como hacer console log a un formData
-    //     console.log(pair[0] + ", " + pair[1]);
-    // }
+    formData.append("file", file);
     // const response = await fetch('rutaApi', { //?? asi se hace consulta a api
     //   method: 'POST',
     //   body: formData
@@ -66,14 +63,38 @@ const Analizardataset = () => {
           <FileUpload
             name="fileUpload"
             customUpload
-            chooseOptions={chooseOptions} //botones
+            chooseOptions={chooseOptions}
             uploadOptions={uploadOptions}
             cancelOptions={cancelOptions}
-            uploadHandler={uploadHandler} //handler de file upload
+            uploadHandler={uploadHandler}
             onUpload={onUpload}
-            accept="text/plain" //?? Ver mime types aqui https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
-            maxFileSize={1000000} //esta en bytes
+            accept="application/json"
+            maxFileSize={1000000}
             emptyTemplate={<p className="m-0">Arrastra aquí el archivo</p>}
+          />
+          <Button
+            style={{ marginTop: "1em" }}
+            label="Analizar con Sentiment Spanish"
+            disabled={dataset === ""}
+          />
+          <Button
+            style={{ marginTop: "1em", marginLeft: "1em" }}
+            label="Analizar con AFINN"
+            disabled={dataset === ""}
+          />
+          <Button
+            style={{ marginTop: "1em", marginLeft: "1em" }}
+            label="Analizar con NLTK"
+            disabled={dataset === ""}
+          />
+          <Button
+            style={{ marginTop: "1em", marginLeft: "1em" }}
+            label="Analizar con TextBlob"
+            disabled={dataset === ""}
+          />
+          <Button
+            style={{ marginTop: "1em", marginLeft: "1em" }}
+            label="Prueba de Sentiment Spanish"
           />
         </Card>
       </div>

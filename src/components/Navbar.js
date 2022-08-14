@@ -38,6 +38,13 @@ const Navbar = () => {
               window.location.href = "/analizardataset";
             },
           },
+          {
+            label: "Comparar sets de datos",
+            icon: "pi pi-fw pi-table",
+            command: () => {
+              window.location.href = "/comparardataset";
+            },
+          },
         ]}
       />
     </div>

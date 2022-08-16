@@ -16,7 +16,7 @@ const Recolectartweets = () => {
     style: { width: "50%", marginBottom: "5%" },
   };
   const uploadOptions = {
-    label: "Subir, recolectar y exportar Tweets",
+    label: "Subir y recolectar Tweets",
     icon: "pi pi-upload",
     className: "p-button-success",
     style: { width: "50%", marginBottom: "5%" },
@@ -91,12 +91,12 @@ const Recolectartweets = () => {
           />
           <Button
             label="Exportar tweets"
+            style={{ width: "50%", marginTop: "1em" }}
             onClick={() => {
               window.location.href = `http://127.0.0.1:5000/download?fileName=${tweet.name}`;
             }}
             disabled={tweet === ""}
           />
-          "
         </Card>
         <Toaster />
         <Loader open={open} />

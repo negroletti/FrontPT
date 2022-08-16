@@ -80,13 +80,13 @@ const Filtrarusuarios = () => {
           <FileUpload
             name="fileUpload"
             customUpload
-            chooseOptions={chooseOptions} //botones
+            chooseOptions={chooseOptions}
             uploadOptions={uploadOptions}
             cancelOptions={cancelOptions}
-            uploadHandler={uploadHandler} //handler de file upload
+            uploadHandler={uploadHandler}
             onUpload={onUpload}
-            accept="application/json" //?? Ver mime types aqui https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
-            maxFileSize={1000000} //esta en bytes
+            accept="application/json"
+            maxFileSize={1000000}
             emptyTemplate={<p className="m-0">Arrastra aquí el archivo</p>}
           />
           <Button

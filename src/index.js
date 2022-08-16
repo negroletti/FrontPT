@@ -8,7 +8,6 @@ import Analizardataset from "./components/Analizardataset";
 import Filtrarusuarios from "./components/Filtrarusuarios";
 import Recolectartweets from "./components/Recolectartweets";
 import Comparardataset from "./components/Comparardataset";
-import Tabla from "./components/Tabla";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,7 +19,6 @@ root.render(
       <Route path="/filtrarusuarios" element={<Filtrarusuarios />} />
       <Route path="/recolectartweets" element={<Recolectartweets />} />
       <Route path="/comparardataset" element={<Comparardataset />} />
-      <Route path="/tabla" element={<Tabla />} />
     </Routes>
   </BrowserRouter>
 );

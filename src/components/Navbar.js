@@ -32,14 +32,14 @@ const Navbar = () => {
             },
           },
           {
-            label: "Analizar set de datos",
+            label: "Analizar conjunto de datos",
             icon: "pi pi-fw pi-chart-bar",
             command: () => {
               window.location.href = "/analizardataset";
             },
           },
           {
-            label: "Comparar sets de datos",
+            label: "Comparar conjuntos de datos",
             icon: "pi pi-fw pi-table",
             command: () => {
               window.location.href = "/comparardataset";

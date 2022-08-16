@@ -10,6 +10,7 @@ import Loader from "../components/Loader";
 const Recolectaruser = () => {
   const [cuentaReferencia, setCuentaReferencia] = useState("");
   const [cantidadCuenta, setCantidadCuenta] = useState(null);
+  const [archivo, setArchivo] = useState("");
   const [region, setRegion] = useState("");
   const [open, setOpen] = useState(false);
   const [flag, setFlag] = useState(false);
@@ -24,6 +25,8 @@ const Recolectaruser = () => {
       );
       if (response.status === 200) {
         setOpen(false);
+        const data = await response.json();
+        setArchivo(data.cuentaReferencia);
         setFlag(true);
         toast.success(
           "Se recuperaron los followers de la cuenta de referencia"
@@ -89,7 +92,7 @@ const Recolectaruser = () => {
                 label="Exportar"
                 style={{ marginTop: 12 }}
                 onClick={() => {
-                  window.location.href = `http://127.0.0.1:5000/download?fileName=${cuentaReferencia}.json`;
+                  window.location.href = `http://127.0.0.1:5000/download?fileName=${archivo}`;
                 }}
                 disabled={!flag}
               />

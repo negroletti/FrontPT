@@ -10,7 +10,7 @@ const CargarArregloPalabras = ({ open, setOpen, setConjuntoPalabras }) => {
     style: { width: "50%", marginBottom: "5%" },
   };
   const uploadOptions = {
-    label: "Cargar conjunto de datos",
+    label: "Cargar conjunto de palabras",
     icon: "pi pi-upload",
     className: "p-button-success",
     style: { width: "50%", marginBottom: "5%" },
